@@ -30,6 +30,12 @@ import { IconifyIconOffline, IconifyIconOnline } from "./components/ReIcon";
 app.component("IconifyIconOffline", IconifyIconOffline);
 app.component("IconifyIconOnline", IconifyIconOnline);
 
+import Selector from "./components/Selector/index.vue";
+import ListQuery from "./components/ListQuery/index.vue";
+
+app.component("Selector", Selector);
+app.component("ListQuery", ListQuery);
+
 getServerConfig(app).then(async config => {
   injectResponsiveStorage(app, config);
   setupStore(app);

@@ -1,0 +1,52 @@
+<template>
+  <div class="grid grid-cols-4 gap-4px">
+    <div class="flex" v-for="item in props.list" :key="item.prop">
+      <span class="mr-4px text-12px flex-auto leading-32px whitespace-nowrap">{{
+        item.label
+      }}</span>
+      <component
+        :is="item.type"
+        v-model="form[item.prop]"
+        v-bind="item.attrs || {}"
+        v-on="item.listeners || {}"
+      />
+    </div>
+    <div class="text-right col-end-5">
+      <el-button @click="resetHandler">重置</el-button>
+      <el-button type="primary" @click="queryHandler">查询</el-button>
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { markRaw } from "vue";
+import { initForm } from "./utils";
+// defineProps 暂不支持从其他文件导入的类型，PropsType 无法抽离到单独的类型文件中
+interface ListItem {
+  type: string;
+  prop: string;
+  label: string;
+  attrs?: object;
+  listeners?: object;
+}
+
+interface PropsType {
+  list: Array<ListItem>;
+}
+
+const props = defineProps<PropsType>();
+const emit = defineEmits(["query", "reset"]);
+
+const form = initForm(props.list);
+
+const resetHandler = () => {
+  Object.assign(form, initForm(props.list));
+  emit("reset", markRaw(form));
+};
+
+const queryHandler = () => {
+  emit("query", markRaw(form));
+};
+
+defineExpose(form);
+</script>
+<style scoped></style>
