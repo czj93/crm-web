@@ -12,8 +12,11 @@
       />
     </div>
     <div class="text-right col-end-5">
-      <el-button @click="resetHandler">重置</el-button>
-      <el-button type="primary" @click="queryHandler">查询</el-button>
+      <slot>
+        <el-button @click="createHandler" v-if="hasCreate">新增</el-button>
+        <el-button @click="resetHandler">重置</el-button>
+        <el-button type="primary" @click="queryHandler">查询</el-button>
+      </slot>
     </div>
   </div>
 </template>
@@ -30,11 +33,12 @@ interface ListItem {
 }
 
 interface PropsType {
+  hasCreate: boolean;
   list: Array<ListItem>;
 }
 
-const props = defineProps<PropsType>();
-const emit = defineEmits(["query", "reset"]);
+const props = withDefaults(defineProps<PropsType>(), { hasCreate: true });
+const emit = defineEmits(["query", "reset", "create"]);
 
 const form = initForm(props.list);
 
@@ -45,6 +49,10 @@ const resetHandler = () => {
 
 const queryHandler = () => {
   emit("query", markRaw(form));
+};
+
+const createHandler = () => {
+  emit("create");
 };
 
 defineExpose(form);
