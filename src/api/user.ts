@@ -6,6 +6,11 @@ interface userType extends Promise<any> {
   info?: object;
 }
 
+interface loginResultType {
+  success: boolean;
+  result: string;
+}
+
 // 获取验证码
 export const getVerify = (): userType => {
   return http.request("get", "/captcha");
@@ -13,12 +18,16 @@ export const getVerify = (): userType => {
 
 // 登录
 export const getLogin = (data: object) => {
-  return http.request("post", "/login", { data });
+  return http.request<loginResultType>("post", "/user/login", { data });
 };
 
 // 刷新token
 export const refreshToken = (data: object) => {
   return http.request("post", "/refreshToken", { data });
+};
+
+export const userInfo = () => {
+  return http.request("post", "/user/info");
 };
 
 // export const searchVague = (data: object) => {

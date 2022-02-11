@@ -13,6 +13,7 @@ import illustration3 from "/@/assets/login/illustration3.svg?component";
 import illustration4 from "/@/assets/login/illustration4.svg?component";
 import illustration5 from "/@/assets/login/illustration5.svg?component";
 import illustration6 from "/@/assets/login/illustration6.svg?component";
+import { getLogin } from "/@/api/user";
 
 const router = useRouter();
 
@@ -38,16 +39,26 @@ const currentWeek = computed(() => {
   }
 });
 
-let user = ref("admin");
-let pwd = ref("123456");
+let user = ref("");
+let pwd = ref("");
 
 const onLogin = (): void => {
-  storageSession.setItem("info", {
-    username: "admin",
-    accessToken: "eyJhbGciOiJIUzUxMiJ9.test"
+  getLogin({
+    username: user.value,
+    password: pwd.value
+  }).then(res => {
+    const { result } = res;
+    storageSession.setItem("info", {
+      // username: "admin",
+      accessToken: result
+    });
+    initRouter("admin").then(() => {});
+    router.push("/");
   });
-  initRouter("admin").then(() => {});
-  router.push("/");
+  // storageSession.setItem("info", {
+  //   username: "admin",
+  //   accessToken: "eyJhbGciOiJIUzUxMiJ9.test"
+  // });
 };
 
 function onUserFocus() {
