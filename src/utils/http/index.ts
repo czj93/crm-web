@@ -1,6 +1,6 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import {
-  resultType,
+  // resultType,
   PureHttpError,
   RequestMethods,
   PureHttpResoponse,
@@ -9,8 +9,9 @@ import {
 import qs from "qs";
 import NProgress from "../progress";
 import { loadEnv } from "@build/index";
-import { getToken } from "/@/utils/auth";
-import { useUserStoreHook } from "/@/store/modules/user";
+import { storageSession } from "/@/utils/storage";
+// import { getToken } from "/@/utils/auth";
+// import { useUserStoreHook } from "/@/store/modules/user";
 
 // 加载环境变量 VITE_PROXY_DOMAIN（开发环境）  VITE_PROXY_DOMAIN_REAL（打包后的线上环境）
 const { VITE_PROXY_DOMAIN, VITE_PROXY_DOMAIN_REAL } = loadEnv();
@@ -60,26 +61,31 @@ class PureHttp {
           PureHttp.initConfig.beforeRequestCallback($config);
           return $config;
         }
-        const token = getToken();
-        if (token) {
-          const data = JSON.parse(token);
-          const now = new Date().getTime();
-          const expired = parseInt(data.expires) - now <= 0;
-          if (expired) {
-            // token过期刷新
-            useUserStoreHook()
-              .refreshToken(data)
-              .then((res: resultType) => {
-                config.headers["Authorization"] = "Bearer " + res.accessToken;
-                return $config;
-              });
-          } else {
-            config.headers["Authorization"] = "Bearer " + data.accessToken;
-            return $config;
-          }
-        } else {
-          return $config;
+        const info = storageSession.getItem("info");
+        if (info && info.accessToken) {
+          config.headers["Authorization"] = "Bearer " + info.accessToken;
         }
+        return config;
+        // const token = getToken();
+        // if (token) {
+        //   const data = JSON.parse(token);
+        //   const now = new Date().getTime();
+        //   const expired = parseInt(data.expires) - now <= 0;
+        //   if (expired) {
+        //     // token过期刷新
+        //     useUserStoreHook()
+        //       .refreshToken(data)
+        //       .then((res: resultType) => {
+        //         config.headers["Authorization"] = "Bearer " + res.accessToken;
+        //         return $config;
+        //       });
+        //   } else {
+        //     config.headers["Authorization"] = "Bearer " + data.accessToken;
+        //     return $config;
+        //   }
+        // } else {
+        //   return $config;
+        // }
       },
       error => {
         return Promise.reject(error);
