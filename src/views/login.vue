@@ -52,13 +52,9 @@ const onLogin = (): void => {
       // username: "admin",
       accessToken: result
     });
-    initRouter("admin").then(() => {});
+    initRouter().then(() => {});
     router.push("/");
   });
-  // storageSession.setItem("info", {
-  //   username: "admin",
-  //   accessToken: "eyJhbGciOiJIUzUxMiJ9.test"
-  // });
 };
 
 function onUserFocus() {
