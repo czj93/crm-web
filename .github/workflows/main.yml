@@ -77,9 +77,9 @@ jobs:
           script: |
             ## TODO: 初次部署会报错，由于不存在旧版镜像导致 stop、rm等命令参数不全
             # 停止旧版镜像
-            docker stop $(docker ps -q --filter ancestor=ccr.ccs.tencentyun.com/czj-hub/thiny_erp_web
+            docker stop $(docker ps -q --filter ancestor=ccr.ccs.tencentyun.com/czj-hub/thiny_erp_web)
             # 删除旧版容器
-            docker rm -f $(docker ps -q -a --filter ancestor=ccr.ccs.tencentyun.com/czj-hub/thiny_erp_web
+            docker rm -f $(docker ps -q -a --filter ancestor=ccr.ccs.tencentyun.com/czj-hub/thiny_erp_web)
             # 删除旧版镜像
             docker rmi -f ccr.ccs.tencentyun.com/czj-hub/thiny_erp_web
             # 拉取 latest 版镜像
