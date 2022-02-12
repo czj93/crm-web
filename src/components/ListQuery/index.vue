@@ -9,6 +9,7 @@
         v-model="form[item.prop]"
         v-bind="item.attrs || {}"
         v-on="item.listeners || {}"
+        @keyup.enter="queryHandler"
       />
     </div>
     <div class="text-right col-end-5">
@@ -21,7 +22,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { markRaw } from "vue";
+import { toRaw } from "vue";
 import { initForm } from "./utils";
 // defineProps 暂不支持从其他文件导入的类型，PropsType 无法抽离到单独的类型文件中
 interface ListItem {
@@ -44,11 +45,11 @@ const form = initForm(props.list);
 
 const resetHandler = () => {
   Object.assign(form, initForm(props.list));
-  emit("reset", markRaw(form));
+  emit("reset", toRaw(form));
 };
 
 const queryHandler = () => {
-  emit("query", markRaw(form));
+  emit("query", toRaw(form));
 };
 
 const createHandler = () => {

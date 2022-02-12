@@ -48,7 +48,10 @@ import {
   ElTreeV2,
   // 指令
   ElLoading,
-  ElInfiniteScroll
+  ElInfiniteScroll,
+  ElTable,
+  ElTableColumn,
+  ElPopconfirm
 } from "element-plus";
 
 // Directives
@@ -100,7 +103,10 @@ const components = [
   ElEmpty,
   ElCollapse,
   ElCollapseItem,
-  ElTreeV2
+  ElTreeV2,
+  ElTable,
+  ElTableColumn,
+  ElPopconfirm
 ];
 
 export function useElementPlus(app: App) {
