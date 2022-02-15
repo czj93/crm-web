@@ -1,8 +1,11 @@
 import { http } from "/@/utils/http";
 import type { ShopType } from "./types";
+import type { PaginateResult, DetailResult } from "/@/views/type";
 
 export const list = params => {
-  return http.request("get", "/shop", { params });
+  return http.request<PaginateResult<ShopType>>("get", "/shop", {
+    params
+  });
 };
 
 export const create = (data: ShopType) => {
@@ -18,5 +21,5 @@ export const remove = (id: number) => {
 };
 
 export const detail = (id: number) => {
-  return http.request("get", `/shop/${id}`);
+  return http.request<DetailResult<ShopType>>("get", `/shop/${id}`);
 };
