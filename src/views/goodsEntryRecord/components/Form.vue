@@ -163,6 +163,8 @@ watchEffect(() => {
       Object.assign(form, res.result);
     });
     title.value = `编辑${modeuleName}`;
+    fetchShopList("");
+    fetchGoodsList("");
   } else {
     title.value = `新增${modeuleName}`;
   }
