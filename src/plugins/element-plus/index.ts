@@ -51,7 +51,8 @@ import {
   ElInfiniteScroll,
   ElTable,
   ElTableColumn,
-  ElPopconfirm
+  ElPopconfirm,
+  ElDatePicker
 } from "element-plus";
 
 // Directives
@@ -106,7 +107,8 @@ const components = [
   ElTreeV2,
   ElTable,
   ElTableColumn,
-  ElPopconfirm
+  ElPopconfirm,
+  ElDatePicker
 ];
 
 export function useElementPlus(app: App) {
