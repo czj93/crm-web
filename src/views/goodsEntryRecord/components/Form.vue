@@ -6,7 +6,13 @@
     :before-close="handleClose"
     :destroy-on-close="true"
   >
-    <el-form :inline="true" :model="form" label-width="100px" ref="formRef">
+    <el-form
+      :inline="true"
+      :model="form"
+      :rules="rules"
+      label-width="100px"
+      ref="formRef"
+    >
       <el-row :gutter="16">
         <el-col :span="12">
           <el-form-item label="商品名称" prop="goodsCode">
@@ -56,6 +62,8 @@
             <el-date-picker
               v-model="form.date"
               type="date"
+              value-format="YYYY-MM-DD"
+              format="YYYY-MM-DD"
               placeholder="请选择"
             ></el-date-picker>
           </el-form-item>
@@ -111,6 +119,13 @@ const form = reactive({
   remark: "",
   date: null
 });
+
+const rules = reactive({
+  goodsCode: [{ required: true, message: "此项必填" }],
+  number: [{ required: true, message: "此项必填" }],
+  date: [{ required: true, message: "此项必选" }]
+});
+
 const modeuleName = "入库";
 const title = ref("新增" + modeuleName);
 const shops = ref([]);
@@ -158,14 +173,16 @@ const submitCallback = function () {
 };
 
 watchEffect(() => {
+  if (props.visible) {
+    fetchShopList("");
+    fetchGoodsList("");
+  }
   if (props.visible && props.id) {
     detail(props.id).then(res => {
       Object.assign(form, res.result);
     });
     title.value = `编辑${modeuleName}`;
-    fetchShopList("");
-    fetchGoodsList("");
-  } else {
+  } else if (props.visible) {
     title.value = `新增${modeuleName}`;
   }
 });

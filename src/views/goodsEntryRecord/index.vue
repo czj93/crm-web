@@ -64,7 +64,7 @@ const queryOptions = [
 const query = reactive({
   page: 1,
   pageSize: 10,
-  shopName: null
+  shopId: null
 });
 
 const loading = ref(false);
