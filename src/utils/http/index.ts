@@ -7,6 +7,7 @@ import {
   PureHttpRequestConfig
 } from "./types.d";
 import qs from "qs";
+import { ElMessage, ElNotification } from "element-plus";
 import NProgress from "../progress";
 import { loadEnv } from "@build/index";
 import { storageSession } from "/@/utils/storage";
@@ -101,6 +102,22 @@ class PureHttp {
         const $config = response.config;
         // 关闭进度条动画
         NProgress.done();
+        // 判断请求是否成功
+        if (!response.data.success) {
+          const { debug, message } = response.data;
+          if (debug) {
+            ElNotification({
+              title: message,
+              message: debug,
+              type: "error",
+              duration: 0
+            });
+          } else {
+            ElMessage.error(message);
+          }
+          return Promise.reject();
+        }
+
         // 优先判断post/get等方法是否传入回掉，否则执行初始化设置等回掉
         if (typeof $config.beforeResponseCallback === "function") {
           $config.beforeResponseCallback(response);
@@ -117,6 +134,7 @@ class PureHttp {
         $error.isCancelRequest = Axios.isCancel($error);
         // 关闭进度条动画
         NProgress.done();
+        ElMessage.error(error.message);
         // 所有的响应异常 区分来源为取消请求/非取消请求
         return Promise.reject($error);
       }

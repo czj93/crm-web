@@ -30,20 +30,24 @@ export type HttpResponseBase = {
 };
 
 export type HttpErrorResponse = HttpResponseBase & {
+  success: false;
   code: number;
   // error: any
   debug?: string;
 };
 
 export type PaginateResult<T> = HttpResponseBase & {
+  success: true;
   result: HttpResultPaginate<T>;
 };
 
 export type DetailResult<T> = HttpResponseBase & {
+  success: true;
   result: T;
 };
 
 export type HttpSuccessResponse<T> = HttpResponseBase & {
+  success: true;
   result?: T | HttpResultPaginate<T>;
 };
 
