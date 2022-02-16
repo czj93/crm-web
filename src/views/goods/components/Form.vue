@@ -9,12 +9,12 @@
     <el-form :inline="true" :model="form" label-width="100px" ref="formRef">
       <el-row :gutter="16">
         <el-col :span="12">
-          <el-form-item label="商品名称" prop="goodsCode">
+          <el-form-item label="商品编码" prop="goodsCode">
             <el-input v-model="form.goodsCode" placeholder="请输入"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="商品编码" prop="goodsName">
+          <el-form-item label="商品名称" prop="goodsName">
             <el-input v-model="form.goodsName" placeholder="请输入"></el-input>
           </el-form-item>
         </el-col>
