@@ -6,7 +6,7 @@ const goodsRouter = {
   component: Layout,
   redirect: "/goods/list",
   meta: {
-    icon: "home-filled",
+    icon: "goods-filled",
     title: "商品管理",
     showLink: true,
     i18n: true,
