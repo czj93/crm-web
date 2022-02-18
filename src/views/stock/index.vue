@@ -19,6 +19,8 @@
       <el-table-column prop="goodsName" label="商品名称" />
       <el-table-column prop="shopId" label="店铺" />
       <el-table-column prop="number" label="数量" />
+      <el-table-column prop="createdAt" label="创建时间" />
+      <el-table-column prop="updatedAt" label="更新时间" />
     </el-table>
     <div class="text-right mt-8px">
       <el-pagination
