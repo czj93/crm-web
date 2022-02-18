@@ -3,7 +3,7 @@ import type { StockType } from "./types";
 import type { PaginateResult } from "/@/views/type";
 
 export const list = params => {
-  return http.request<PaginateResult<StockType>>("get", "/stock", {
+  return http.request<PaginateResult<StockType>>("get", "/stock/list", {
     params
   });
 };

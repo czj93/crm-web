@@ -1,5 +1,17 @@
 <template>
-  <div class="grid grid-cols-4 gap-4px">
+  <div
+    class="
+      grid
+      pt-8px
+      pb-8px
+      pl-8px
+      pr-8px
+      rounded
+      grid-cols-4
+      gap-4px
+      bg-white
+    "
+  >
     <div class="flex" v-for="item in props.list" :key="item.prop">
       <span class="mr-4px text-12px flex-auto leading-32px whitespace-nowrap">{{
         item.label

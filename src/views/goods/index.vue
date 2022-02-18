@@ -21,7 +21,7 @@
       <el-table-column prop="unit" label="单位" />
       <el-table-column prop="status" label="状态" />
       <el-table-column prop="purchasePrice" label="进货价格" />
-      <el-table-column prop="retailPrice" label="建议零售价" />
+      <el-table-column prop="retailPrice" label="建议零售价" min-width="100" />
       <el-table-column prop="remark" label="备注" />
       <el-table-column prop="createdAt" label="创建时间" />
       <el-table-column prop="updatedAt" label="更新时间" />

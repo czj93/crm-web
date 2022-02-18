@@ -2,6 +2,7 @@
   <div>
     <ListQuery
       ref="listQuery"
+      :hasCreate="false"
       :list="queryOptions"
       @query="queryHandler"
       @create="createHandler"
