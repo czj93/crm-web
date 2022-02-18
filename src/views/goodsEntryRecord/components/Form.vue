@@ -54,7 +54,11 @@
       <el-row :gutter="16">
         <el-col :span="12">
           <el-form-item label="数量" prop="number">
-            <el-input v-model="form.number" placeholder="请输入"></el-input>
+            <el-input
+              v-model.number="form.number"
+              placeholder="请输入"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -122,7 +126,10 @@ const form = reactive({
 
 const rules = reactive({
   goodsCode: [{ required: true, message: "此项必填" }],
-  number: [{ required: true, message: "此项必填" }],
+  number: [
+    { required: true, message: "此项必填" }
+    // { required: true, type: "number", message: "请输入数字" }
+  ],
   date: [{ required: true, message: "此项必选" }]
 });
 

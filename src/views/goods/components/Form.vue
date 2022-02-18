@@ -6,7 +6,13 @@
     :before-close="handleClose"
     :destroy-on-close="true"
   >
-    <el-form :inline="true" :model="form" label-width="100px" ref="formRef">
+    <el-form
+      :inline="true"
+      :model="form"
+      :rules="rules"
+      label-width="100px"
+      ref="formRef"
+    >
       <el-row :gutter="16">
         <el-col :span="12">
           <el-form-item label="商品编码" prop="goodsCode">
@@ -16,18 +22,6 @@
         <el-col :span="12">
           <el-form-item label="商品名称" prop="goodsName">
             <el-input v-model="form.goodsName" placeholder="请输入"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="16">
-        <el-col :span="12">
-          <el-form-item label="规格" prop="spces">
-            <el-input v-model="form.spces" placeholder="请输入"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="单位" prop="unit">
-            <el-input v-model="form.unit" placeholder="请输入"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -46,6 +40,18 @@
               v-model.number="form.retailPrice"
               placeholder="请输入"
             ></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="16">
+        <el-col :span="12">
+          <el-form-item label="规格" prop="spces">
+            <el-input v-model="form.spces" placeholder="请输入"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="单位" prop="unit">
+            <el-input v-model="form.unit" placeholder="请输入"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -100,6 +106,20 @@ const form = reactive({
   retailPrice: null,
   remark: ""
 });
+
+const rules = reactive({
+  goodsName: [{ required: true, message: "此项必填" }],
+  goodsCode: [{ required: true, message: "此项必填" }],
+  purchasePrice: [
+    { required: true, message: "此项必填" }
+    // { required: true, type: "number", message: "请输入数字" }
+  ],
+  retailPrice: [
+    { required: true, message: "此项必填" }
+    // { required: true, type: "number", message: "请输入数字" }
+  ]
+});
+
 const modeuleName = "商品";
 const title = ref("新增" + modeuleName);
 

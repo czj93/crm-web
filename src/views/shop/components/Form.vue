@@ -6,7 +6,13 @@
     :before-close="handleClose"
     :destroy-on-close="true"
   >
-    <el-form :inline="true" :model="form" ref="formRef">
+    <el-form
+      :inline="true"
+      :model="form"
+      :rules="rules"
+      label-width="60px"
+      ref="formRef"
+    >
       <el-row :gutter="16">
         <el-col :span="24">
           <el-form-item label="名称" prop="shopName">
@@ -56,6 +62,11 @@ const form = reactive({
   shopName: "",
   remark: ""
 });
+
+const rules = reactive({
+  shopName: [{ required: true, message: "此项必填" }]
+});
+
 const modeuleName = "店铺";
 const title = ref("新增" + modeuleName);
 
