@@ -1,4 +1,3 @@
-import { $t } from "/@/plugins/i18n";
 import Layout from "/@/layout/index.vue";
 
 const shopRouter = {
@@ -10,7 +9,6 @@ const shopRouter = {
     icon: "home-filled",
     title: "店铺管理",
     showLink: true,
-    i18n: true,
     rank: 0
   },
   children: [
@@ -19,8 +17,7 @@ const shopRouter = {
       name: "ShopList",
       component: () => import("/@/views/shop/index.vue"),
       meta: {
-        title: $t("menus.hshome"),
-        i18n: true,
+        title: "店铺列表",
         showLink: false
       }
     }

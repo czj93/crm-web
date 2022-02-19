@@ -9,7 +9,6 @@ const goodsRouter = {
     icon: "goods-filled",
     title: "商品管理",
     showLink: true,
-    i18n: true,
     rank: 0
   },
   children: [
@@ -19,7 +18,6 @@ const goodsRouter = {
       component: () => import("/@/views/goods/index.vue"),
       meta: {
         title: "商品管理",
-        i18n: true,
         showLink: true
       }
     },
@@ -29,7 +27,6 @@ const goodsRouter = {
       component: () => import("/@/views/goodsEntryRecord/index.vue"),
       meta: {
         title: "商品入库",
-        i18n: true,
         showLink: true
       }
     },
@@ -39,7 +36,6 @@ const goodsRouter = {
       component: () => import("/@/views/stock/index.vue"),
       meta: {
         title: "商品库存",
-        i18n: true,
         showLink: true
       }
     }
