@@ -17,11 +17,11 @@
     >
       <el-table-column type="index" label="序号" width="60" align="center" />
       <el-table-column prop="goodsCode" label="商品编码" />
-      <el-table-column prop="goodsName" label="商品名称" />
-      <el-table-column prop="shopId" label="店铺" />
+      <el-table-column prop="goods.goodsName" label="商品名称" />
+      <el-table-column prop="shop.shopName" label="店铺" />
       <el-table-column prop="number" label="数量" />
-      <el-table-column prop="createdAt" label="创建时间" />
-      <el-table-column prop="updatedAt" label="更新时间" />
+      <el-table-column prop="createdAt" label="创建时间" min-width="120" />
+      <el-table-column prop="updatedAt" label="更新时间" min-width="120" />
     </el-table>
     <div class="text-right mt-8px">
       <el-pagination

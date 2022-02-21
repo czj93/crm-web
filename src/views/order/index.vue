@@ -16,12 +16,12 @@
     >
       <el-table-column type="index" label="序号" width="60" align="center" />
       <el-table-column prop="orderNo" label="订单编号" />
-      <el-table-column prop="shopId" label="店铺" />
-      <el-table-column prop="orderTime" label="下单时间" />
+      <el-table-column prop="shop.shopName" label="店铺" />
       <el-table-column prop="customer" label="顾客" />
       <el-table-column prop="remark" label="备注" />
-      <el-table-column prop="createdAt" label="创建时间" />
-      <el-table-column prop="updatedAt" label="更新时间" />
+      <el-table-column prop="orderTime" label="下单时间" min-width="120" />
+      <el-table-column prop="createdAt" label="创建时间" min-width="120" />
+      <el-table-column prop="updatedAt" label="更新时间" min-width="120" />
       <el-table-column label="操作" width="120">
         <template #default="scope">
           <el-button type="text" @click="editHandler(scope.row)">

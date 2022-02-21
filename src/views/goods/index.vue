@@ -20,11 +20,15 @@
       <el-table-column prop="spces" label="商品规格" />
       <el-table-column prop="unit" label="单位" />
       <el-table-column prop="status" label="状态" />
-      <el-table-column prop="purchasePrice" label="进货价格" />
-      <el-table-column prop="retailPrice" label="建议零售价" min-width="100" />
+      <el-table-column prop="purchasePrice" label="进货价格(元)" />
+      <el-table-column
+        prop="retailPrice"
+        label="建议零售价(元)"
+        min-width="100"
+      />
       <el-table-column prop="remark" label="备注" />
-      <el-table-column prop="createdAt" label="创建时间" />
-      <el-table-column prop="updatedAt" label="更新时间" />
+      <el-table-column prop="createdAt" label="创建时间" min-width="120" />
+      <el-table-column prop="updatedAt" label="更新时间" min-width="120" />
       <el-table-column label="操作" width="120">
         <template #default="scope">
           <el-button type="text" @click="editHandler(scope.row)">
