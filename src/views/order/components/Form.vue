@@ -273,6 +273,9 @@ watchEffect(() => {
     if (!props.id && !form.goodsList.length) {
       form.goodsList.push(createOrderGoods());
     }
+  } else {
+    form.id = null;
+    form.goodsList = [];
   }
   if (props.visible && props.id) {
     detail(props.id).then(res => {
