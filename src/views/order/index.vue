@@ -20,16 +20,18 @@
       <el-table-column prop="customer" label="顾客" />
       <el-table-column prop="remark" label="备注" />
       <el-table-column prop="orderTime" label="下单时间" min-width="120" />
-      <el-table-column prop="createdAt" label="创建时间" min-width="120" />
+      <!-- <el-table-column prop="createdAt" label="创建时间" min-width="120" /> -->
       <el-table-column prop="updatedAt" label="更新时间" min-width="120" />
-      <el-table-column label="操作" width="120">
+      <el-table-column label="操作">
         <template #default="scope">
           <el-button type="text" @click="editHandler(scope.row)">
-            编辑
+            查看
           </el-button>
           <!-- <el-popconfirm title="确认删除?" @confirm="removeHandler(scope.row)">
             <template #reference>
-              <el-button type="text" color="!text-red-500">删除</el-button>
+              <el-button type="text">
+                退货/退款
+              </el-button>
             </template>
           </el-popconfirm> -->
         </template>

@@ -14,17 +14,23 @@
       ref="formRef"
     >
       <el-row :gutter="16">
-        <el-col :span="24">
+        <el-col :span="12">
           <el-form-item label="订单编号" prop="orderNo">
-            <el-input v-model="form.orderNo" placeholder="请输入"></el-input>
+            <el-input
+              v-model="form.orderNo"
+              :disabled="!!form.id"
+              placeholder="请输入"
+            ></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="24">
+        <el-col :span="12">
           <el-form-item label="店铺" prop="shopId">
             <el-select
               v-model="form.shopId"
               remote
+              clearable
               filterable
+              :disabled="!!form.id"
               :loading="loadingShop"
               :remote-method="fetchShopList"
             >
@@ -39,17 +45,22 @@
         </el-col>
       </el-row>
       <el-row :gutter="16">
-        <el-col :span="24">
+        <el-col :span="12">
           <el-form-item label="顾客" prop="customer">
-            <el-input v-model="form.customer" placeholder="请输入"></el-input>
+            <el-input
+              v-model="form.customer"
+              :disabled="!!form.id"
+              placeholder="请输入"
+            ></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="24">
+        <el-col :span="12">
           <el-form-item label="下单时间" prop="orderTime">
             <el-date-picker
               v-model="form.orderTime"
               type="datetime"
               placeholder="请选择"
+              :disabled="!!form.id"
               value-format="YYYY-MM-DD hh:mm:ss"
               format="YYYY-MM-DD hh:mm:ss"
             >
@@ -63,20 +74,27 @@
             <el-input
               v-model="form.remark"
               :rows="2"
+              :disabled="!!form.id"
               type="textarea"
               placeholder="请输入"
             ></el-input>
           </el-form-item>
         </el-col>
       </el-row>
-      <el-table :data="form.goodsList" style="width: 100%">
+      <el-table class="table-form" :data="form.goodsList" style="width: 100%">
         <el-table-column label="商品" width="180">
           <template #default="scope">
-            <el-form-item :prop="`goodsList[${scope.$index}].goodsCode`">
+            <el-form-item
+              :rules="rules.goodsCode"
+              :inline-message="true"
+              :prop="`goodsList[${scope.$index}].goodsCode`"
+            >
               <el-select
                 v-model="form.goodsList[scope.$index].goodsCode"
                 remote
+                clearable
                 filterable
+                :disabled="!!form.id"
                 :loading="loadingGoods"
                 :remote-method="fetchGoodsList"
               >
@@ -92,8 +110,14 @@
         </el-table-column>
         <el-table-column label="数量" width="180">
           <template #default="scope">
-            <el-form-item :prop="`goodsList[${scope.$index}].number`">
+            <el-form-item
+              :rules="rules.number"
+              :inline-message="true"
+              :prop="`goodsList[${scope.$index}].number`"
+            >
               <el-input
+                placeholder="请输入数量"
+                :disabled="!!form.id"
                 v-model.number="form.goodsList[scope.$index].number"
               ></el-input>
             </el-form-item>
@@ -101,21 +125,36 @@
         </el-table-column>
         <el-table-column label="销售单价" width="180">
           <template #default="scope">
-            <el-form-item :prop="`goodsList[${scope.$index}].unitPrice`">
+            <el-form-item
+              :rules="rules.unitPrice"
+              :inline-message="true"
+              :prop="`goodsList[${scope.$index}].unitPrice`"
+            >
               <el-input
+                placeholder="请输入销售单价"
+                :disabled="!!form.id"
                 v-model.number="form.goodsList[scope.$index].unitPrice"
               ></el-input>
             </el-form-item>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="180">
+        <el-table-column label="操作">
           <template #default="scope">
-            <el-button type="text" @click="addHandler(scope.$index)">
+            <el-button
+              v-if="!form.id"
+              type="text"
+              @click="addHandler(scope.$index)"
+            >
               添加
             </el-button>
-            <el-button type="text" @click="delHandler(scope.$index)">
+            <el-button
+              v-if="!form.id"
+              type="text"
+              @click="delHandler(scope.$index)"
+            >
               删除
             </el-button>
+            <el-button v-if="!!form.id" type="text"> 退货/退款 </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -161,7 +200,10 @@ const form = reactive({
 });
 
 const rules = reactive({
-  shopName: [{ required: true, message: "此项必填" }]
+  goodsCode: [{ required: true, message: "此项必填" }],
+  orderTime: [{ required: true, message: "此项必填" }],
+  number: [{ required: true, message: "此项必填" }],
+  unitPrice: [{ required: true, message: "此项必填" }]
 });
 
 function createOrderGoods(): OrderGoods {
@@ -180,6 +222,7 @@ const loading = ref(false);
 
 const handleClose = function (done) {
   formRef.value.resetFields();
+  emit("update:visible", false);
   done();
 };
 
@@ -198,8 +241,8 @@ const delHandler = function (index) {
 
 const submit = function () {
   formRef.value.validate(valid => {
-    loading.value = true;
     if (valid) {
+      loading.value = true;
       const data = toRaw(form);
       if (props.id) {
         update(props.id, data)
@@ -227,7 +270,7 @@ watchEffect(() => {
   if (props.visible) {
     fetchShopList("");
     fetchGoodsList("");
-    if (!props.id) {
+    if (!props.id && !form.goodsList.length) {
       form.goodsList.push(createOrderGoods());
     }
   }
