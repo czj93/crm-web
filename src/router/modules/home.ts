@@ -5,7 +5,7 @@ const homeRouter = {
   path: "/",
   name: "home",
   component: Layout,
-  redirect: "/welcome",
+  redirect: "/dashboard",
   meta: {
     icon: "home-filled",
     title: $t("menus.hshome"),
@@ -15,9 +15,9 @@ const homeRouter = {
   },
   children: [
     {
-      path: "/welcome",
-      name: "welcome",
-      component: () => import("/@/views/welcome.vue"),
+      path: "/dashboard",
+      name: "dashboard",
+      component: () => import("/@/views/dashboard/index.vue"),
       meta: {
         title: $t("menus.hshome"),
         i18n: true,
