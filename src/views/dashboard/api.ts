@@ -17,6 +17,10 @@ export const goodsInfo = () => {
   return http.request<DetailResult<any>>("get", "/analysis/goods");
 };
 
+export const goodsRank = () => {
+  return http.request<DetailResult<any>>("get", "/analysis/goodsRank");
+};
+
 export const lastYearInfo = () => {
   return http.request<DetailResult<any>>("get", "/analysis/last-year");
 };

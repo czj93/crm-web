@@ -55,7 +55,7 @@ export const useUserStore = defineStore({
       storageSession.clear();
       useMultiTagsStoreHook().handleTags("equal", [
         {
-          path: "/welcome",
+          path: "/dashboard",
           parentPath: "/",
           meta: {
             title: "menus.hshome",

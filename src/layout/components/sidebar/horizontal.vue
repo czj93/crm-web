@@ -96,7 +96,7 @@ const menuSelect = (indexPath: string): void => {
 };
 
 function backHome() {
-  router.push("/welcome");
+  router.push("/dashboard");
 }
 
 function handleResize() {

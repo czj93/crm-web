@@ -12,7 +12,7 @@ export const useMultiTagsStore = defineStore({
       ? storageLocal.getItem("responsive-tags")
       : [
           {
-            path: "/welcome",
+            path: "/dashboard",
             parentPath: "/",
             meta: {
               title: "menus.hshome",

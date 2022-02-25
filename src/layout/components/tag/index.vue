@@ -309,7 +309,7 @@ function deleteDynamicTag(obj: any, current: any, tag?: string) {
     if (other) {
       useMultiTagsStoreHook().handleTags("equal", [
         {
-          path: "/welcome",
+          path: "/dashboard",
           parentPath: "/",
           meta: {
             title: "menus.hshome",
@@ -416,7 +416,7 @@ function onClickDrop(key, item, selectRoute?: RouteConfigs) {
         length: multiTags.value.length
       });
       usePermissionStoreHook().clearAllCachePage();
-      router.push("/welcome");
+      router.push("/dashboard");
       break;
   }
   setTimeout(() => {
@@ -492,7 +492,7 @@ function showMenuModel(
       tagsViews[v].disabled = false;
     });
     tagsViews[3].disabled = true;
-  } else if (currentIndex === 0 || currentPath === "/redirect/welcome") {
+  } else if (currentIndex === 0 || currentPath === "/redirect/dashboard") {
     // 当前路由为首页
     disabledMenus(true);
   } else {
@@ -502,7 +502,7 @@ function showMenuModel(
 
 function openMenu(tag, e) {
   closeMenu();
-  if (tag.path === "/welcome") {
+  if (tag.path === "/dashboard") {
     // 右键菜单为首页，只显示刷新
     showMenus(false);
     tagsViews[0].show = true;

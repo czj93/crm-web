@@ -6,7 +6,7 @@ const orderRouter = {
   component: Layout,
   redirect: "/order/list",
   meta: {
-    icon: "home-filled",
+    icon: "tickets",
     title: "订单管理",
     showLink: true,
     rank: 0

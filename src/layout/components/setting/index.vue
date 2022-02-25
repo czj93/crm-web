@@ -152,7 +152,7 @@ function onReset() {
   );
   useMultiTagsStoreHook().handleTags("equal", [
     {
-      path: "/welcome",
+      path: "/dashboard",
       parentPath: "/",
       meta: {
         title: "menus.hshome",

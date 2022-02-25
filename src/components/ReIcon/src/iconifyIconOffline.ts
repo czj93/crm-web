@@ -23,6 +23,7 @@ import Tickets from "@iconify-icons/ep/tickets";
 import OfficeBuilding from "@iconify-icons/ep/office-building";
 import Notebook from "@iconify-icons/ep/notebook";
 import Goodsfilled from "@iconify-icons/ep/goods-filled";
+import Shop from "@iconify-icons/ep/shop";
 
 addIcon("check", Check);
 addIcon("menu", Menu);
@@ -47,6 +48,7 @@ addIcon("tickets", Tickets);
 addIcon("office-building", OfficeBuilding);
 addIcon("notebook", Notebook);
 addIcon("goods-filled", Goodsfilled);
+addIcon("shop", Shop);
 
 // Iconify Icon在Vue里离线使用（用于内网环境）
 // https://docs.iconify.design/icon-components/vue/offline.html

@@ -6,7 +6,7 @@ const shopRouter = {
   component: Layout,
   redirect: "/shop/list",
   meta: {
-    icon: "home-filled",
+    icon: "shop",
     title: "店铺管理",
     showLink: true,
     rank: 0

@@ -42,7 +42,7 @@ export const injectResponsiveStorage = (app: App, config: ServerConfigs) => {
             type: Array,
             default: Storage.getData(undefined, "tags") ?? [
               {
-                path: "/welcome",
+                path: "/dashboard",
                 parentPath: "/",
                 meta: {
                   title: "menus.hshome",

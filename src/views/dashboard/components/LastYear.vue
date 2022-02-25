@@ -31,8 +31,11 @@ function initechartInstance() {
 
 function setOption(xAxis, series, legend) {
   echartInstance.setOption({
+    title: {
+      text: "最近12个月销售数据"
+    },
     grid: {
-      top: "32px",
+      top: "62px",
       bottom: "0",
       left: "16px",
       right: "16px",
@@ -42,7 +45,8 @@ function setOption(xAxis, series, legend) {
       trigger: "item"
     },
     legend: {
-      data: legend
+      data: legend,
+      right: 20
     },
     xAxis: {
       type: "category",
@@ -79,7 +83,7 @@ onBeforeMount(() => {
       if (res.result) {
         const xAxis = [];
         const series = [];
-        const legend = ["销售金额", "利润", "数量"];
+        const legend = ["销售额", "利润", "数量"];
         const amountList = [];
         const profitList = [];
         const numberList = [];
@@ -91,7 +95,7 @@ onBeforeMount(() => {
         });
 
         series.push({
-          name: "销售金额",
+          name: "销售额",
           data: amountList,
           type: "line",
           smooth: true
