@@ -15,4 +15,5 @@ export interface GoodsType {
   purchasePrice: number;
   retailPrice: number;
   remark: string;
+  label?: string;
 }
