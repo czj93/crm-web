@@ -74,6 +74,7 @@ const loading = ref(false);
 
 const handleClose = function (done) {
   formRef.value.resetFields();
+  emit("update:visible", false);
   done();
 };
 
