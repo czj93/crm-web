@@ -15,15 +15,6 @@
     >
       <el-row :gutter="16">
         <el-col :span="12">
-          <el-form-item label="订单编号" prop="orderNo">
-            <el-input
-              v-model="form.orderNo"
-              :disabled="!!form.id"
-              placeholder="请输入"
-            ></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
           <el-form-item label="店铺" prop="shopId">
             <el-select
               v-model="form.shopId"
@@ -43,17 +34,6 @@
             </el-select>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="16">
-        <el-col :span="12">
-          <el-form-item label="顾客" prop="customer">
-            <el-input
-              v-model="form.customer"
-              :disabled="!!form.id"
-              placeholder="请输入"
-            ></el-input>
-          </el-form-item>
-        </el-col>
         <el-col :span="12">
           <el-form-item label="下单时间" prop="orderTime">
             <el-date-picker
@@ -69,7 +49,16 @@
         </el-col>
       </el-row>
       <el-row :gutter="16">
-        <el-col :span="24">
+        <el-col :span="12">
+          <el-form-item label="顾客" prop="customer">
+            <el-input
+              v-model="form.customer"
+              :disabled="!!form.id"
+              placeholder="请输入"
+            ></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
           <el-form-item label="备注" prop="remark">
             <el-input
               v-model="form.remark"
