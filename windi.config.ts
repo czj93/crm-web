@@ -7,6 +7,7 @@ export default defineConfig({
   darkMode: "class",
   attributify: true,
   plugins: [typography()],
+  safelist: ["col-start-2", "col-start- 3", "col-start-4"],
   theme: {
     extend: {
       zIndex: {

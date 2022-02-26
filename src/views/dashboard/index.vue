@@ -11,33 +11,33 @@
       >
         <el-card>
           <el-row :gutter="16">
-            <el-col :span="4">
+            <el-col :span="4" :xs="12">
               <span>总销售额：</span>
               <CountTo :endVal="totalSaleInfoData.totalAmount" suffix="元" />
             </el-col>
-            <el-col :span="4">
+            <el-col :span="4" :xs="12">
               <span>总利润：</span>
               <CountTo :endVal="totalSaleInfoData.totalNetProfit" suffix="元" />
             </el-col>
-            <el-col :span="4">
+            <el-col :span="4" :xs="12">
               <span>总销售量：</span>
               <CountTo :endVal="totalSaleInfoData.totalNumber" />
             </el-col>
-            <el-col :span="4">
+            <el-col :span="4" :xs="12">
               <span>月销售额：</span>
               <CountTo
                 :endVal="totalSaleInfoData.currentMonthTotalAmount"
                 suffix="元"
               />
             </el-col>
-            <el-col :span="4">
+            <el-col :span="4" :xs="12">
               <span>月利润：</span>
               <CountTo
                 :endVal="totalSaleInfoData.currentMonthTotalNetProfit"
                 suffix="元"
               />
             </el-col>
-            <el-col :span="4">
+            <el-col :span="4" :xs="12">
               <span>月销售量：</span>
               <CountTo :endVal="totalSaleInfoData.currentMonthTotalNumber" />
             </el-col>
@@ -58,7 +58,7 @@
         </el-card>
       </el-col>
 
-      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="8">
+      <el-col class="mb-16px" :xs="24" :sm="24" :md="12" :lg="6" :xl="8">
         <el-card style="height: 39vh">
           <template #header>
             <span class="text-18px font-bold">销量前十</span>
@@ -78,7 +78,7 @@
         </el-card>
       </el-col>
 
-      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="8">
+      <el-col class="mb-16px" :xs="24" :sm="24" :md="12" :lg="6" :xl="8">
         <el-card style="height: 39vh">
           <template #header>
             <span class="text-18px font-bold">销售额前十</span>
@@ -98,7 +98,7 @@
         </el-card>
       </el-col>
 
-      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
+      <el-col class="mb-16px" :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
         <el-card>
           <!-- <template #header>
             <span style="font-size: 16px; font-weight: 500">店铺销售情况</span>

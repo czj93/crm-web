@@ -24,7 +24,10 @@
         @keyup.enter="queryHandler"
       />
     </div>
-    <div class="text-right col-end-5">
+    <div
+      class="text-right col-end-5"
+      :class="[`col-start-${(props.list.length % 4) + 1}`]"
+    >
       <slot>
         <el-button @click="createHandler" v-if="hasCreate">新增</el-button>
         <el-button @click="resetHandler">重置</el-button>
