@@ -97,12 +97,13 @@
                 :disabled="!!form.id"
                 :loading="loadingGoods"
                 :remote-method="fetchGoodsList"
+                @change="rowGoodsChange($event, scope.$index)"
               >
                 <el-option
                   v-for="goodsItem in goods"
                   :key="goodsItem.id"
                   :value="goodsItem.goodsCode"
-                  :label="goodsItem.goodsName"
+                  :label="goodsItem.label"
                 ></el-option>
               </el-select>
             </el-form-item>
@@ -123,6 +124,10 @@
             </el-form-item>
           </template>
         </el-table-column>
+        <el-table-column
+          label="建议售价"
+          prop="purchasePrice"
+        ></el-table-column>
         <el-table-column label="销售单价" width="180">
           <template #default="scope">
             <el-form-item
@@ -312,8 +317,20 @@ const fetchGoodsList = debounce(goodsName => {
     goodsName
   }).then(res => {
     const { data } = res.result;
+    data.forEach(goods => {
+      goods.label = `${goods.goodsName} ${goods.spces || ""}`;
+    });
     goods.value = data;
     loadingGoods.value = false;
   });
 }, 300);
+
+const rowGoodsChange = function (goodsCode, index) {
+  const target = goods.value.find(item => item.goodsCode === goodsCode);
+  if (target) {
+    form.goodsList[index].purchasePrice = target.purchasePrice || "";
+  } else {
+    form.goodsList[index].purchasePrice = "";
+  }
+};
 </script>

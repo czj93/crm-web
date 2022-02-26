@@ -154,8 +154,8 @@ const close = function () {
 
 const submit = function () {
   formRef.value.validate(valid => {
-    loading.value = true;
     if (valid) {
+      loading.value = true;
       const data = toRaw(form);
       if (props.id) {
         update(props.id, data)
